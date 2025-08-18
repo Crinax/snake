@@ -1,12 +1,12 @@
-use macroquad::prelude::*;
+use bevy::prelude::*;
 
-#[macroquad::main("Snake")]
-async fn main() {
-    loop {
-        clear_background(BLACK);
+fn hello_world() {
+    println!("hello world!");
+}
 
-        draw_text("Hello, world!", 100.0, 100.0, 80.0, WHITE);
-
-        next_frame().await
-    }
+fn main() {
+    App::new()
+        .add_plugins(DefaultPlugins)
+        .add_systems(Update, hello_world)
+        .run();
 }
