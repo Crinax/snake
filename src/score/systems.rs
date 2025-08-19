@@ -11,6 +11,6 @@ pub(super) fn spawn_score(mut commands: Commands) {
 
 pub(super) fn update_score_view(mut query: Query<(&Score, &mut Text2d)>) {
     for (score, mut text) in query.iter_mut() {
-        *text = Text2d::new(format!("Score: {}", score.0));
+        **text = format!("Score: {}", score.0);
     }
 }
