@@ -10,7 +10,7 @@ pub struct SpawnScore;
 pub struct AddToScore(pub i32);
 
 impl Command for SpawnScore {
-    fn apply(self, world: &mut World) -> () {
+    fn apply(self, world: &mut World) {
         let mut score = world.query::<&Score>();
 
         match score.single(world) {
@@ -30,7 +30,7 @@ impl Command for SpawnScore {
 }
 
 impl Command for AddToScore {
-    fn apply(self, world: &mut World) -> () {
+    fn apply(self, world: &mut World) {
         let mut score = world.query::<&mut Score>();
 
         match score.single_mut(world) {

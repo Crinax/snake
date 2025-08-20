@@ -8,7 +8,7 @@ use score::ScorePlugin;
 struct ScoreTimer(Timer);
 
 fn spawn_camera(mut commands: Commands) {
-    commands.spawn(Camera2d::default());
+    commands.spawn(Camera2d);
 }
 
 fn increase_score(time: Res<Time>, mut timer: ResMut<ScoreTimer>, mut commands: Commands) {
