@@ -1,7 +1,7 @@
 use bevy::prelude::*;
 
 use crate::snake::{
-    commands::{MOVE_SNAKE_LEFT, move_snake_segment::SegmentDirection},
+    commands::move_snake_segment::SegmentDirection,
     components::{SnakeSegment, SnakeSpeed},
 };
 
