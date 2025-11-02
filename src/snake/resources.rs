@@ -1,4 +1,4 @@
-use bevy::{ecs::resource::Resource, math::Vec2};
+use bevy::{ecs::resource::Resource, time::Timer};
 
-#[derive(Resource, Default)]
-pub(super) struct SnakeSpeed(pub Vec2);
+#[derive(Resource)]
+pub(super) struct SnakeTimer(pub(super) Timer);

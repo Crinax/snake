@@ -6,20 +6,20 @@ mod systems;
 use bevy::{
     app::{Plugin, Startup, Update},
     ecs::schedule::IntoScheduleConfigs,
-    math::Vec2,
+    time::{Timer, TimerMode},
 };
 
-use crate::snake::resources::SnakeSpeed;
+use crate::snake::resources::SnakeTimer;
 
 pub struct SnakePlugin;
 
 impl Plugin for SnakePlugin {
     fn build(&self, app: &mut bevy::app::App) {
-        app.insert_resource(SnakeSpeed(Vec2::new(-0.33, 0.0)))
+        app.insert_resource(SnakeTimer(Timer::from_seconds(0.5, TimerMode::Repeating)))
             .add_systems(Startup, systems::add_snake_segment)
             .add_systems(
                 Update,
-                (systems::move_snake, systems::add_snake_segment).chain(),
+                (systems::move_snake, systems::handle_key_input).chain(),
             );
     }
 }
