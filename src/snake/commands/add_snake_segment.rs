@@ -9,9 +9,13 @@ pub(in crate::snake) struct AddSnakeSegment;
 
 impl Command for AddSnakeSegment {
     fn apply(self, world: &mut World) {
-        let mut snake_query = world.query::<(&SnakeSegment, &Transform)>();
+        let mut snake_query = world.query::<(&SnakeSegment, &Transform, &SnakeSpeed)>();
 
         let segments_count = snake_query.iter(world).count();
+
+        if segments_count == 10 {
+            return;
+        }
 
         let mut position = Vec3::default();
         let mesh_handle = world.resource_scope(|_world, mut mushes: Mut<Assets<Mesh>>| {
@@ -27,10 +31,10 @@ impl Command for AddSnakeSegment {
         if segments_count > 0 {
             let last_snake_segment = snake_query
                 .iter(world)
-                .find(|&(snake, _)| snake.0 == segments_count - 1);
+                .find(|&(snake, _, _)| snake.0 == segments_count - 1);
 
-            if let Some((_, last_position)) = last_snake_segment {
-                position = last_position.translation.clone();
+            if let Some((_, last_position, speed)) = last_snake_segment {
+                position = last_position.translation - speed.0;
             }
         }
 
