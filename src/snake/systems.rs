@@ -42,7 +42,7 @@ pub(super) fn move_snake(
             .filter(|(_, _, snake)| snake.0 != 0);
 
         for (mut transform, _, _) in sorted {
-            let prev = transform.translation.clone();
+            let prev = transform.translation;
 
             if let Some(previous) = prev_position {
                 transform.translation.x = previous.x;
